@@ -6,7 +6,6 @@ require_login();
 $page_title = "My Favorites";
 $active = "favorites";
 
-// Pull the current patch's stats alongside each favorited hero, if available
 $stmt = mysqli_prepare($conn, "
     SELECT h.hero_id, h.hero_name, h.difficulty, r.role_name, r.role_icon,
            hs.win_rate, hs.pick_rate, hs.ban_rate, hs.tier_grade, hs.rank_tier

@@ -1,6 +1,4 @@
-<?php
-// ---- Database connection settings ----
-// Update these if your XAMPP/MySQL setup uses different credentials.
+<?phps
 $db_host = "localhost";
 $db_user = "root";
 $db_pass = "";

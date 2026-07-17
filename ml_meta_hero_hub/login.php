@@ -22,7 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = mysqli_stmt_get_result($stmt);
         $user = mysqli_fetch_assoc($result);
 
-        if ($user && $user["password"] === $password) {
+        $password_ok = false;
+        if ($user) {
+            if (password_verify($password, $user["password"])) {
+                $password_ok = true;
+            } elseif ($user["password"] === $password) {
+                $password_ok = true;
+            }
+        }
+
+        if ($password_ok) {
             $_SESSION["user_id"] = $user["user_id"];
             $_SESSION["full_name"] = $user["full_name"];
             $_SESSION["role"] = $user["role"];
@@ -42,11 +51,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Login — ML Meta Hero Hub</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-<div class="ticker">
-    <span>⚡ ML META HERO HUB <span class="tag">// LIVE META TRACKER</span></span>
+<body class="login-page">
+<!-- <div class="ticker">
+    <span>⚡ ML META HERO HUB <span class="tag"></span></span>
     <span>DRAFT PICK · BAN · WIN</span>
-</div>
+</div> -->
+<nav class="navbarlogin">
+    <a href="dashboard.php" class="brand"><img src="assets/img/logo.png" alt="ML Meta Hero Hub Logo"><h3>META HERO HUB</h3></a>
+</nav>
+
+
+
 <div class="auth-wrap">
     <div class="auth-box">
         <h1>Welcome back, Jungler</h1>
@@ -73,6 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             Admin: admin / admin123<br>
             Player: shadowstrike / player123
         </div>
+
+        <p class="signup-link">Don't have an account? <a href="register.php"><strong>Sign up</strong></a></p>
     </div>
 </div>
 </body>

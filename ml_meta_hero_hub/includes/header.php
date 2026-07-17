@@ -1,5 +1,4 @@
 <?php
-// Expects $page_title and $active to be set by the including page.
 $page_title = $page_title ?? "ML Meta Hero Hub";
 $active = $active ?? "";
 ?>

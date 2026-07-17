@@ -5,7 +5,6 @@ require_login();
 
 $hero_id = (int) ($_GET["id"] ?? 0);
 
-// ---- hero + role info ----
 $stmt = mysqli_prepare($conn, "
     SELECT h.hero_id, h.hero_name, h.image_url, h.banner_url, h.difficulty, h.overview, r.role_name, r.role_icon
     FROM heroes h
@@ -24,7 +23,6 @@ if (!$hero) {
 $page_title = $hero["hero_name"];
 $active = "dashboard";
 
-// ---- current patch stats across rank brackets ----
 $stmt = mysqli_prepare($conn, "
     SELECT hs.rank_tier, hs.win_rate, hs.pick_rate, hs.ban_rate, hs.tier_grade, p.patch_version
     FROM hero_stats hs
@@ -36,13 +34,11 @@ mysqli_stmt_bind_param($stmt, "i", $hero_id);
 mysqli_stmt_execute($stmt);
 $stats = mysqli_stmt_get_result($stmt);
 
-// ---- builds ----
 $stmt = mysqli_prepare($conn, "SELECT build_name, build_type, items, description FROM builds WHERE hero_id = ? ORDER BY build_type");
 mysqli_stmt_bind_param($stmt, "i", $hero_id);
 mysqli_stmt_execute($stmt);
 $builds = mysqli_stmt_get_result($stmt);
 
-// ---- counters (both directions) ----
 $stmt = mysqli_prepare($conn, "
     SELECT h2.hero_name AS related_name, hc.counter_type, hc.notes
     FROM hero_counters hc
@@ -54,7 +50,6 @@ mysqli_stmt_bind_param($stmt, "i", $hero_id);
 mysqli_stmt_execute($stmt);
 $counters = mysqli_stmt_get_result($stmt);
 
-// ---- is this hero already favorited by the current user? ----
 $stmt = mysqli_prepare($conn, "SELECT favorite_id FROM favorites WHERE user_id = ? AND hero_id = ?");
 mysqli_stmt_bind_param($stmt, "ii", $_SESSION["user_id"], $hero_id);
 mysqli_stmt_execute($stmt);

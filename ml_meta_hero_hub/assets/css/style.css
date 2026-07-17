@@ -1,7 +1,3 @@
-/* ===========================================================
-   ML Meta Hero Hub — Global Styles
-   =========================================================== */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,12 +25,18 @@ body {
   min-height: 100vh;
 }
 
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* ---------- Ticker ---------- */
 .ticker {
   background: linear-gradient(90deg, var(--accent-2), #4a35c9);
   color: #fff;
@@ -51,8 +53,8 @@ a {
   margin-left: 6px;
 }
 
-/* ---------- Navbar ---------- */
 .navbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,12 +64,41 @@ a {
   flex-wrap: wrap;
   gap: 12px;
 }
+.navbarlogin {
+  color: #e2b135;
+  padding: 14px 28px;
+  margin-bottom: 8px;
+}
+
+.navbarlogin .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbarlogin .brand img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.navbarlogin .brand h3 {
+  color: #e2b135;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
 .navbar .brand {
+  color: #e2b135;
   font-size: 18px;
   font-weight: 700;
   color: var(--accent);
 }
 .nav-links {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   gap: 22px;
 }
@@ -95,7 +126,6 @@ a {
   color: var(--text-dim);
 }
 
-/* ---------- Layout ---------- */
 .page-wrap {
   max-width: 1180px;
   margin: 0 auto;
@@ -121,13 +151,12 @@ a {
   border-top: 1px solid var(--border);
 }
 
-/* ---------- Auth pages ---------- */
 .auth-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 32px);
-  padding: 20px;
+  min-height: auto;
+  padding: 0;
 }
 .auth-box {
   background: var(--bg-panel);
@@ -189,8 +218,29 @@ a {
   padding: 10px 12px;
   line-height: 1.6;
 }
+.success-msg {
+  background: rgba(61, 220, 151, 0.12);
+  border: 1px solid var(--success);
+  color: var(--success);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.success-msg a {
+  color: var(--success);
+  text-decoration: underline;
+}
+.signup-link {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.signup-link a {
+  color: var(--accent-2);
+}
 
-/* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
   background: var(--bg-card);
@@ -236,7 +286,6 @@ a {
   display: inline;
 }
 
-/* ---------- Filters ---------- */
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -260,7 +309,6 @@ a {
   color: var(--text-dim);
 }
 
-/* ---------- Hero Grid ---------- */
 .hero-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -364,7 +412,6 @@ a {
   margin-top: 14px;
 }
 
-/* ---------- Empty state ---------- */
 .empty-state {
   text-align: center;
   padding: 60px 20px;
@@ -375,7 +422,6 @@ a {
   margin-bottom: 10px;
 }
 
-/* ---------- Hero Detail ---------- */
 .hero-header {
   position: relative;
   display: flex;
@@ -415,7 +461,7 @@ a {
 }
 
 .brand img {
-  height: 60px; /* Change this to whatever size you want */
+  height: 60px;
   width: auto;
   display: block;
 }
@@ -534,7 +580,6 @@ a {
   line-height: 1.5;
 }
 
-/* ---------- Patch notes ---------- */
 .patch-card {
   background: var(--bg-panel);
   border: 1px solid var(--border);
@@ -580,6 +625,10 @@ a {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .nav-links {
+    position: static;
+    transform: none;
   }
   .hero-header {
     flex-direction: column;

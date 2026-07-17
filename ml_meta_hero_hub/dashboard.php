@@ -7,7 +7,6 @@ $page_title = "Meta Board";
 $active = "dashboard";
 $base = "";
 
-// ---- filter inputs ----
 $role_filter  = $_GET["role"] ?? "";
 $patch_filter = $_GET["patch"] ?? "";
 $rank_filter  = $_GET["rank"] ?? "";
@@ -17,8 +16,6 @@ $search       = trim($_GET["q"] ?? "");
 $allowed_sorts = ["win_rate", "pick_rate", "ban_rate", "hero_name"];
 if (!in_array($sort, $allowed_sorts)) $sort = "win_rate";
 
-// ---- build query against hero_stats/heroes/roles/patches directly
-// (so filtering can reach into any patch, not just the "current" one the view exposes) ----
 $sql = "SELECT h.hero_id, h.hero_name, h.image_url, r.role_name, r.role_icon,
                hs.rank_tier, hs.win_rate, hs.pick_rate, hs.ban_rate, hs.tier_grade,
                p.patch_version
@@ -65,12 +62,10 @@ if ($types !== "") {
 mysqli_stmt_execute($stmt);
 $heroes = mysqli_stmt_get_result($stmt);
 
-// lookups for filter dropdowns
 $roles = mysqli_query($conn, "SELECT role_name FROM roles ORDER BY role_name");
 $patches = mysqli_query($conn, "SELECT patch_version, status FROM patches ORDER BY release_date DESC");
 $ranks = mysqli_query($conn, "SELECT DISTINCT rank_tier FROM hero_stats");
 
-// current user's favorites, so hearts render filled
 $fav_ids = [];
 $fstmt = mysqli_prepare($conn, "SELECT hero_id FROM favorites WHERE user_id = ?");
 mysqli_stmt_bind_param($fstmt, "i", $_SESSION["user_id"]);
