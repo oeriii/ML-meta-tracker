@@ -1,9 +1,4 @@
-# ML Meta Hero Hub
-
-A PHP + MySQL web app for tracking the current Mobile Legends meta — hero win/pick/ban
-rates by rank and patch, recommended builds, counters, and user favorites.
-
-## Setup (XAMPP)
+Setup (XAMPP)
 
 1. Copy this whole `ml_meta_hero_hub` folder into `htdocs` (e.g. `C:/xampp/htdocs/ml_meta_hero_hub`).
 2. Start **Apache** and **MySQL** in the XAMPP Control Panel.
