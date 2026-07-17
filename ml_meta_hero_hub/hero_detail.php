@@ -6,7 +6,7 @@ require_login();
 $hero_id = (int) ($_GET["id"] ?? 0);
 
 $stmt = mysqli_prepare($conn, "
-    SELECT h.hero_id, h.hero_name, h.image_url, h.banner_url, h.difficulty, h.overview, r.role_name, r.role_icon
+    SELECT h.hero_id, h.hero_name, h.image_url, h.difficulty, h.overview, r.role_name, r.role_icon
     FROM heroes h
     JOIN roles r ON h.role_id = r.role_id
     WHERE h.hero_id = ?
@@ -60,7 +60,7 @@ include __DIR__ . "/includes/header.php";
 
 <a href="dashboard.php" class="btn btn-small" style="margin-bottom:16px; display:inline-block;">&larr; Back to Meta Board</a>
 
-<?php $banner = $hero["banner_url"] ?: $hero["image_url"]; ?>
+<?php $banner = $hero["image_url"]; ?>
 <div class="hero-header" style="background-image:url('<?= htmlspecialchars($banner) ?>');">
     <div class="hero-header-overlay"></div>
     <div class="hero-header-content">
