@@ -35,4 +35,3 @@ rates by rank and patch, recommended builds, counters, and user favorites.
 ## Notes
 
 - Passwords are stored in plain text in the seed data to match the existing schema.
-- 
