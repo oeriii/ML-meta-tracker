@@ -34,9 +34,4 @@ rates by rank and patch, recommended builds, counters, and user favorites.
 
 ## Notes
 
-- Hero portrait images referenced in `heroes.image_url` (`assets/img/heroes/*.png`) are
-  not included — drop your own hero art in `assets/img/heroes/` using those filenames,
-  or swap in placeholder art.
 - Passwords are stored in plain text in the seed data to match the existing schema.
-  A natural "future enhancement" for the docs is switching to `password_hash()` /
-  `password_verify()`.
